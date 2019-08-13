@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "proto";
+
+message SearchRequest {
+    string query = 1;
+    int32 page = 2;
+    int32 count = 3;
+}
+
+message SearchResponse {
+    int32 code = 1;
+    message SearchResultItem {
+        int32 id = 1;
+        string title = 2;
+        string detail = 3;
+    }
+    repeated SearchResultItem data = 2;
+}
+
+service SearchService {
+    rpc Search (SearchRequest) returns (SearchResponse);
+}
